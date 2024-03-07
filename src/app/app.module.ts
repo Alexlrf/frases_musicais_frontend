@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './componentes/header/header.component';
 import { HomeComponent } from './views/home/home.component';
+import { MenuLateralAdmComponent } from './componentes/menu-lateral-adm/menu-lateral-adm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    MenuLateralAdmComponent
   ],
   imports: [
     BrowserModule,
