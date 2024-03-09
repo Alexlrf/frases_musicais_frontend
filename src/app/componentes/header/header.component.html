@@ -1,36 +1,43 @@
-<div class="d-flex align-items-center">
-  <div class="navbar navbar-light col-4">
-    <div class="container-fluid">
-      <a id="img_container" class="navbar-brand fs-2" href="#">
-        <img
-          src="../../../assets/logo.png"
-          alt=""
-          width="80"
-          class="d-inline-block rounded-circle"
-        />
-        <span class="d-none d-md-block">Frases Musicais</span>
-      </a>
+<form>
+  <div class="row">
+    <div class="navbar navbar-light col-3">
+      <div class="d-flex flex-column justify-content-center">
+        <a id="img_container" class="navbar-brand mx-auto" href="#">
+          <img
+            src="../../../assets/logo.png"
+            alt=""
+            width="80"
+            class="d-inline-block rounded-circle"
+          />
+        </a>
+        <span class="fw-bold font-monospace fs-5">Frases Musicais</span>
+      </div>
+    </div>
+
+    <div class="col-8 d-flex h-25 align-self-center">
+      <div class="row">
+        <div class="col-md-5 d-flex m-1">
+          <input
+            class="form-control form-control-lg"
+            type="search"
+            placeholder="Artista"
+            aria-label="Search"
+          />
+          <button class="btn btn-header ms-1" type="submit">Buscar</button>
+        </div>
+        <div class="col-md-5 d-flex m-1">
+          <input
+            class="form-control form-control-lg"
+            type="search"
+            placeholder="Frase"
+            aria-label="Search"
+          />
+          <button class="btn btn-header ms-1" type="submit">Buscar</button>
+        </div>
+      </div>
+      <div class="col-1 d-flex h-25 align-self-center">
+        <app-menu-lateral-adm></app-menu-lateral-adm>
+      </div>
     </div>
   </div>
-  <div class="d-flex col-8 justify-content-end">
-    <form class="d-flex me-2">
-      <input
-        class="form-control form-control-lg h-25"
-        type="search"
-        placeholder="Buscar Artista"
-        aria-label="Search"
-      />
-      <button class="btn btn-header ms-1" type="submit">Buscar</button>
-
-      <input
-        class="form-control form-control-lg h-25 ms-4"
-        type="search"
-        placeholder="Buscar Frase"
-        aria-label="Search"
-      />
-      <button class="btn btn-header ms-1" type="submit">Buscar</button>
-
-      <app-menu-lateral-adm></app-menu-lateral-adm>
-    </form>
-  </div>
-</div>
+</form>

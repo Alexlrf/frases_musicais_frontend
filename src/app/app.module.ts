@@ -7,13 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './componentes/header/header.component';
 import { HomeComponent } from './views/home/home.component';
 import { MenuLateralAdmComponent } from './componentes/menu-lateral-adm/menu-lateral-adm.component';
+import { CardFrasesComponent } from './componentes/card-frases/card-frases.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    MenuLateralAdmComponent
+    MenuLateralAdmComponent,
+    CardFrasesComponent
   ],
   imports: [
     BrowserModule,
