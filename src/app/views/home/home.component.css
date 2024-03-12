@@ -5,3 +5,8 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+div.scroll {
+  height: 70vh;
+  overflow-x: hidden;
+}
