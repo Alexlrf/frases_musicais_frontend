@@ -8,6 +8,7 @@ import { HeaderComponent } from './componentes/header/header.component';
 import { HomeComponent } from './views/home/home.component';
 import { MenuLateralAdmComponent } from './componentes/menu-lateral-adm/menu-lateral-adm.component';
 import { CardFrasesComponent } from './componentes/card-frases/card-frases.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CardFrasesComponent } from './componentes/card-frases/card-frases.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
   providers: [],

@@ -1,47 +1,20 @@
-<!-- <div class="row"> -->
 <div
   class="card col-8 mx-auto mb-1"
   style="background-color: rgba(245, 245, 245, 0.6)"
+  *ngFor="let frase of frases"
 >
-  <!-- <div class="card col-8 mx-auto mb-1 bg-transparent"> -->
   <div class="card-body">
-    <h5 class="card-title">LULU SANTOS</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Tempos Modernos</h6>
+    <h5 class="card-title">{{ frase.artista.nome }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ frase.nome_musica }}</h6>
     <p class="card-text fw-bold font-monospace">
-      Eu vejo um novo começo de era, de gente fina, elegante e sincera, com
-      afinidade pra dizer mais sim do que não
+      {{ frase.texto }}
     </p>
     <div
       class="offset-10 d-flex align-items-center"
       data-bs-toggle="tooltip"
       title="Nome da música"
     >
-      <a href="#" class="card-link">
-        <span class="d-none d-lg-inline me-1 text-danger">You Tube</span>
-        <i class="bi bi-youtube" style="font-size: 1.4rem; color: red"></i>
-      </a>
-    </div>
-  </div>
-</div>
-
-<div
-  class="card col-8 mx-auto"
-  style="background-color: rgba(245, 245, 245, 0.6)"
->
-  <div class="card-body">
-    <h5 class="card-title">LULU SANTOS</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Tempos Modernos</h6>
-    <p class="card-text fw-bold font-monospace">
-      Eu vejo um novo começo de era, de gente fina, elegante e sincera, com
-      afinidade pra dizer mais sim do que não
-    </p>
-    <div
-      class="offset-10 d-flex align-items-center"
-      data-bs-toggle="tooltip"
-      data-bs-placement="right"
-      title="Nome da música"
-    >
-      <a href="#" class="card-link">
+      <a href="{{ frase.link_video }}" target="_blank" class="card-link">
         <span class="d-none d-lg-inline me-1 text-danger">You Tube</span>
         <i class="bi bi-youtube" style="font-size: 1.4rem; color: red"></i>
       </a>
