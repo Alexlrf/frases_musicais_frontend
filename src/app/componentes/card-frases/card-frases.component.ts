@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Frase } from 'src/app/models/Frase';
 import { FraseService } from 'src/app/services/frase.service';
 
@@ -9,7 +9,7 @@ import { FraseService } from 'src/app/services/frase.service';
 })
 export class CardFrasesComponent implements OnInit{
 
-  frases: Frase[] = []
+  @Input() frases: Frase[] = []
 
   constructor(private fraseService: FraseService){}
 
