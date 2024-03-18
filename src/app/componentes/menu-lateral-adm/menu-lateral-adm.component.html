@@ -25,20 +25,28 @@
   <div class="offcanvas-body">
     <ul class="d-flex flex-column list-unstyled">
       <li class="mb-2">
-        <i
-          class="bi bi-house-fill"
-          style="font-size: 1.7rem; color: rgb(83, 80, 80)"
-        ></i>
+        <span (click)="cadastrarFrase()">
+          <i
+            class="bi bi-file-earmark-plus"
+            style="font-size: 1.7rem; color: rgb(83, 80, 80)"
+          >
+            <span class="offset-1">Cadastrar Frase</span>
+          </i>
+        </span>
+      </li>
+      <li class="mb-2">
+        <span (click)="alterarExcluirFrase()">
+          <i
+            class="bi bi-pencil-square"
+            style="font-size: 1.7rem; color: rgb(83, 80, 80)"
+          >
+            <span class="offset-1">Alterar/Excluir Frase</span>
+          </i>
+        </span>
       </li>
       <li class="mb-2">
         <i
-          class="bi bi-person-circle"
-          style="font-size: 1.7rem; color: rgb(83, 80, 80)"
-        ></i>
-      </li>
-      <li class="mb-2">
-        <i
-          class="bi bi-house-fill"
+          class="bi bi-info-circle"
           style="font-size: 1.7rem; color: rgb(83, 80, 80)"
         ></i>
       </li>

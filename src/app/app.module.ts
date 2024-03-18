@@ -9,6 +9,9 @@ import { HomeComponent } from './views/home/home.component';
 import { MenuLateralAdmComponent } from './componentes/menu-lateral-adm/menu-lateral-adm.component';
 import { CardFrasesComponent } from './componentes/card-frases/card-frases.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CadastroFraseComponent } from './componentes/admin/cadastro-frase/cadastro-frase.component';
+import { ExcluiAlteraFraseComponent } from './componentes/admin/exclui-altera-frase/exclui-altera-frase.component';
+import { AdminComponent } from './views/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     HomeComponent,
     MenuLateralAdmComponent,
-    CardFrasesComponent
+    CardFrasesComponent,
+    CadastroFraseComponent,
+    ExcluiAlteraFraseComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
