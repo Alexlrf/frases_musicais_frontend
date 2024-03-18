@@ -1,0 +1,6 @@
+<div class="container">
+  <app-cadastro-frase *ngIf="operacao === 'cadastro'"></app-cadastro-frase>
+  <app-exclui-altera-frase
+    *ngIf="operacao === 'alteraExclui'"
+  ></app-exclui-altera-frase>
+</div>

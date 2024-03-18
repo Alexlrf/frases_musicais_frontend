@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit{
   @Output() atualizarFrasesArtista = new EventEmitter();
 
   ngOnInit(): void {
-    this.buscarArtistas()
+    this.buscarArtistas();
   }
 
   buscarArtistas() {
@@ -41,8 +41,27 @@ export class HeaderComponent implements OnInit{
     })
   }
 
+  buscarFrases() {
+    if(!this.artista.idArtista) {
+      this.buscarFrasesTodosArtistas()
+    } else {
+      this.buscarArtistaSelecionado()
+    }
+  }
+
+  buscarFrasesTodosArtistas() {
+    this.fraseService.buscarFrases().subscribe({
+      next: (frases)=> {
+        this.frasesArtistaSelecionado = frases.body
+        this.atualizarFrasesArtista.emit(this.frasesArtistaSelecionado)
+      },
+      error: (erro)=> {
+        console.log(erro)
+      }
+    })
+  }
+
   buscarArtistaSelecionado() {
-    console.log(this.artista)
     this.fraseService.buscarArtistaSelecionado(this.artista.idArtista).subscribe({
       next:(frases)=> {
         console.log(frases.body)
