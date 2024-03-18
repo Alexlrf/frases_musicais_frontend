@@ -25,8 +25,11 @@
             [(ngModel)]="artista"
             name="artista.nome"
           >
-            <option selected>TODOS ARTISTAS</option>
-            <option *ngFor="let artista of artistas" [ngValue]="artista">
+            <option
+              *ngFor="let artista of artistas"
+              [ngValue]="artista"
+              [selected]="artista.nome === 'TODOS ARTISTAS'"
+            >
               {{ artista.nome }}
             </option>
           </select>

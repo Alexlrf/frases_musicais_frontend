@@ -1,5 +1,5 @@
+import { Artista } from './../../models/Artista';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Artista } from 'src/app/models/Artista';
 import { Frase } from 'src/app/models/Frase';
 import { ArtistaService } from 'src/app/services/artista.service';
 import { FraseService } from 'src/app/services/frase.service';
@@ -17,10 +17,11 @@ export class HeaderComponent implements OnInit{
     private fraseService: FraseService
     ){}
 
+  // artistaDeafaultSelect: Artista = {idArtista: 0, nome: 'Todos Artistas'}
   artistas: Artista[] = []
   artista: Artista = {
     idArtista: 0,
-    nome: 'Artista'
+    nome: 'TODOS ARTISTAS'
   }
 
   frasesArtistaSelecionado: Frase[] = []
@@ -34,6 +35,7 @@ export class HeaderComponent implements OnInit{
     this.artistaService.buscarArtistas().subscribe({
       next: (artistas)=> {
         this.artistas = artistas.body
+        this.artistas.unshift(this.artista)
       },
       error: (erro)=> {
         console.log(erro)
