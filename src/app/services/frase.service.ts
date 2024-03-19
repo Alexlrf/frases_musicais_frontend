@@ -21,4 +21,8 @@ export class FraseService {
     return this.http.get<any>(`${this.URL_BASE}/frases/artista/${idArtista}`)
   }
 
+  buscarFrasePorFragmento(fragmento: string): Observable<any> {
+    return this.http.get<any>(`${this.URL_BASE}/frases/fragmento/${fragmento}`)
+  }
+
 }

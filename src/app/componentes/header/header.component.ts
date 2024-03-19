@@ -15,14 +15,12 @@ export class HeaderComponent implements OnInit{
   constructor(
     private artistaService: ArtistaService,
     private fraseService: FraseService
-    ){}
+  ){}
 
-  // artistaDeafaultSelect: Artista = {idArtista: 0, nome: 'Todos Artistas'}
+  mensagemErro: string = ''
   artistas: Artista[] = []
-  artista: Artista = {
-    idArtista: 0,
-    nome: 'TODOS ARTISTAS'
-  }
+  artista: Artista = {idArtista: 0, nome: 'TODOS ARTISTAS'}
+  fragmentoFrase: string = ''
 
   frasesArtistaSelecionado: Frase[] = []
   @Output() atualizarFrasesArtista = new EventEmitter();
@@ -74,6 +72,26 @@ export class HeaderComponent implements OnInit{
         console.log(erro)
       }
     })
+  }
+
+  buscarFrasePorFragmento() {
+    if(!this.fragmentoFrase || this.fragmentoFrase.length < 2) {
+      this.mensagemErro = 'Ops, digite um texto com pelo menos 2 caracteres para realizar a busca!'
+      return
+    }
+    this.fraseService.buscarFrasePorFragmento(this.fragmentoFrase).subscribe({
+      next:(frases)=> {
+        this.frasesArtistaSelecionado = frases.body
+        if(this.frasesArtistaSelecionado.length == 0) {
+          this.mensagemErro = `Ops, não foram encontradas frases com esse termo: ${this.fragmentoFrase}`
+        }
+        this.atualizarFrasesArtista.emit(this.frasesArtistaSelecionado)
+      },
+      error:(erro)=> {
+        console.log(erro)
+      }
+    })
+
   }
 
 
