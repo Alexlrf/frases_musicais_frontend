@@ -1,5 +1,5 @@
+import { Artista } from './../../models/Artista';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Artista } from 'src/app/models/Artista';
 import { Frase } from 'src/app/models/Frase';
 import { ArtistaService } from 'src/app/services/artista.service';
 import { FraseService } from 'src/app/services/frase.service';
@@ -15,13 +15,12 @@ export class HeaderComponent implements OnInit{
   constructor(
     private artistaService: ArtistaService,
     private fraseService: FraseService
-    ){}
+  ){}
 
+  mensagemErro: string = ''
   artistas: Artista[] = []
-  artista: Artista = {
-    idArtista: 0,
-    nome: 'Artista'
-  }
+  artista: Artista = {idArtista: 0, nome: 'TODOS ARTISTAS'}
+  fragmentoFrase: string = ''
 
   frasesArtistaSelecionado: Frase[] = []
   @Output() atualizarFrasesArtista = new EventEmitter();
@@ -34,6 +33,7 @@ export class HeaderComponent implements OnInit{
     this.artistaService.buscarArtistas().subscribe({
       next: (artistas)=> {
         this.artistas = artistas.body
+        this.artistas.unshift(this.artista)
       },
       error: (erro)=> {
         console.log(erro)
@@ -72,6 +72,26 @@ export class HeaderComponent implements OnInit{
         console.log(erro)
       }
     })
+  }
+
+  buscarFrasePorFragmento() {
+    if(!this.fragmentoFrase || this.fragmentoFrase.length < 2) {
+      this.mensagemErro = 'Ops, digite um texto com pelo menos 2 caracteres para realizar a busca!'
+      return
+    }
+    this.fraseService.buscarFrasePorFragmento(this.fragmentoFrase).subscribe({
+      next:(frases)=> {
+        this.frasesArtistaSelecionado = frases.body
+        if(this.frasesArtistaSelecionado.length == 0) {
+          this.mensagemErro = `Ops, não foram encontradas frases com esse termo: ${this.fragmentoFrase}`
+        }
+        this.atualizarFrasesArtista.emit(this.frasesArtistaSelecionado)
+      },
+      error:(erro)=> {
+        console.log(erro)
+      }
+    })
+
   }
 
 

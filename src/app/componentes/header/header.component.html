@@ -1,5 +1,18 @@
 <form>
   <div class="row">
+    <div
+      *ngIf="mensagemErro"
+      class="alert alert-danger alert-dismissible fade show col-7 offset-4"
+      role="alert"
+    >
+      {{ mensagemErro }}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
     <div class="col-2">
       <div class="d-flex flex-column justify-content-center">
         <a id="img_container" class="navbar-brand mx-auto" href="#">
@@ -25,8 +38,11 @@
             [(ngModel)]="artista"
             name="artista.nome"
           >
-            <option selected>TODOS ARTISTAS</option>
-            <option *ngFor="let artista of artistas" [ngValue]="artista">
+            <option
+              *ngFor="let artista of artistas"
+              [ngValue]="artista"
+              [selected]="artista.nome === 'TODOS ARTISTAS'"
+            >
               {{ artista.nome }}
             </option>
           </select>
@@ -45,8 +61,17 @@
             type="search"
             placeholder="Frase"
             aria-label="Search"
+            [(ngModel)]="fragmentoFrase"
+            name="fragmentoFrase"
+            id="fragmentoFrase"
           />
-          <button class="btn btn-header ms-1" type="submit">Buscar</button>
+          <button
+            class="btn btn-header ms-1"
+            type="submit"
+            (click)="buscarFrasePorFragmento()"
+          >
+            Buscar
+          </button>
         </div>
       </div>
     </div>

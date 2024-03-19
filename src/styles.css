@@ -3,3 +3,14 @@ body{
   margin: 0;
   padding: 0;
 }
+
+.btn {
+  background-color: rgb(176, 142, 207);
+  color: white;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: rgb(252, 251, 253);
+  color: rgb(36, 35, 35);
+}
