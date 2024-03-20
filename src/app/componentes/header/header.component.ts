@@ -17,11 +17,12 @@ export class HeaderComponent implements OnInit{
     private fraseService: FraseService
   ){}
 
-  mensagemErro: string = ''
   artistas: Artista[] = []
   artista: Artista = {idArtista: 0, nome: 'TODOS ARTISTAS'}
   fragmentoFrase: string = ''
 
+  // mensagemErro: string = ''
+  @Output() emitirMensagemErro = new EventEmitter();
   frasesArtistaSelecionado: Frase[] = []
   @Output() atualizarFrasesArtista = new EventEmitter();
 
@@ -76,14 +77,14 @@ export class HeaderComponent implements OnInit{
 
   buscarFrasePorFragmento() {
     if(!this.fragmentoFrase || this.fragmentoFrase.length < 2) {
-      this.mensagemErro = 'Ops, digite um texto com pelo menos 2 caracteres para realizar a busca!'
+      this.emitirMensagemErro.emit('Ops, digite um texto com pelo menos 2 caracteres para realizar a busca!')
       return
     }
     this.fraseService.buscarFrasePorFragmento(this.fragmentoFrase).subscribe({
       next:(frases)=> {
         this.frasesArtistaSelecionado = frases.body
         if(this.frasesArtistaSelecionado.length == 0) {
-          this.mensagemErro = `Ops, não foram encontradas frases com esse termo: ${this.fragmentoFrase}`
+          this.emitirMensagemErro.emit(`Ops, não foram encontradas frases com esse termo: ${this.fragmentoFrase}`)
         }
         this.atualizarFrasesArtista.emit(this.frasesArtistaSelecionado)
       },
