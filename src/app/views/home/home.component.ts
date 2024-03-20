@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Frase } from 'src/app/models/Frase';
 
 @Component({
@@ -7,6 +7,8 @@ import { Frase } from 'src/app/models/Frase';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
+
+  mensagemErro: string = ''
 
   constructor() {}
 
@@ -19,4 +21,9 @@ export class HomeComponent implements OnInit{
     this.frasesArtistaSelecionado = frases
   }
 
+  enviarMensagemErro(mensagemErro: string) {
+    this.mensagemErro = mensagemErro
+  }
+
 }
+

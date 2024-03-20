@@ -1,18 +1,5 @@
 <form>
   <div class="row">
-    <div
-      *ngIf="mensagemErro"
-      class="alert alert-danger alert-dismissible fade show col-7 offset-4"
-      role="alert"
-    >
-      {{ mensagemErro }}
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="alert"
-        aria-label="Close"
-      ></button>
-    </div>
     <div class="col-2">
       <div class="d-flex flex-column justify-content-center">
         <a id="img_container" class="navbar-brand mx-auto" href="#">
@@ -52,7 +39,7 @@
             type="submit"
             (click)="buscarFrases()"
           >
-            Buscar
+            <span>Buscar</span>
           </button>
         </div>
         <div class="d-flex">
@@ -70,7 +57,7 @@
             type="submit"
             (click)="buscarFrasePorFragmento()"
           >
-            Buscar
+            <span>Buscar</span>
           </button>
         </div>
       </div>
