@@ -1,45 +1,135 @@
-<form>
+<form [formGroup]="formulario">
   <div class="container">
     <div class="row mb-5">
       <h2 class="mt-5">Cadastro de Frases</h2>
       <hr />
     </div>
-    <div class="row mb-3">
+    <div class="row">
+      <!-- NOME MUSICA -->
       <div class="col-8">
         <input
           type="text"
           class="form-control form-control-lg"
           placeholder="Nome da música"
+          formControlName="nome_musica"
         />
       </div>
+
+      <!-- ARTISTA -->
       <div class="col-4">
         <input
           type="text"
           class="form-control form-control-lg"
           placeholder="Artista"
+          formControlName="nome"
         />
       </div>
     </div>
+
+    <div class="row mb-3">
+      <!-- VALIDACOES NOME MUSICA -->
+      <div class="col-8">
+        <div
+          class="col-8 text-danger"
+          *ngIf="formulario.get('nome_musica')?.errors?.['required'] && formulario.get('nome_musica')?.touched"
+        >
+          Nome da música é obrigatória
+        </div>
+        <div
+          class="col-8 text-danger"
+          *ngIf="(formulario.get('nome_musica')?.errors?.['minlength']
+            && formulario.get('nome_musica')?.touched)
+            || (formulario.get('nome_musica')?.errors?.['maxLength']
+            && formulario.get('nome_musica')?.touched)"
+        >
+          Nome da música deve de 2 até 100 caracteres
+        </div>
+      </div>
+      <!-- FIM VALIDACOES NOME MUSICA -->
+      <!-- VALIDACOES NOME ARTISTA -->
+      <div class="col-4">
+        <div
+          class="text-danger mt-0"
+          *ngIf="formulario.get('nome')?.errors?.['required'] && formulario.get('nome')?.touched"
+        >
+          Nome de Arista é obrigatório
+        </div>
+        <div
+          class="mt-1 text-danger"
+          *ngIf="(formulario.get('nome')?.errors?.['minlength']
+            && formulario.get('nome')?.touched)"
+        >
+          Nome de Arista deve ter mais de 2 caracteres
+        </div>
+      </div>
+      <!-- FIM VALIDACOES NOME ARTISTA -->
+    </div>
+
+    <!-- TEXTO -->
     <textarea
       type="text"
-      class="form-control form-control-lg col-12 mb-3"
+      class="form-control form-control-lg col-12"
       placeholder="Frase"
+      formControlName="texto"
     ></textarea>
+    <!-- VALIDACOES TEXTO -->
+    <div class="row mb-3">
+      <div
+        class="col-4 mt-1 text-danger"
+        *ngIf="formulario.get('texto')?.errors?.['required'] && formulario.get('texto')?.touched"
+      >
+        Texto da frase é obrigatório
+      </div>
+      <div
+        class="col-4 mt-1 text-danger"
+        *ngIf="(formulario.get('texto')?.errors?.['minlength']
+        && formulario.get('texto')?.touched)"
+      >
+        Texto da frase deve ter mais de 2 caracteres
+      </div>
+    </div>
+    <!-- FIM VALIDACOES TEXTO -->
+
+    <!-- LINK VIDEO -->
     <input
       type="text"
-      class="form-control form-control-lg col-12 mb-3"
+      class="form-control form-control-lg col-12"
       placeholder="Link do Vídeo"
+      formControlName="link_video"
     />
+    <!-- VALIDACOES LINK VIDEO -->
+    <div class="row mb-3">
+      <div
+        class="col-4 mt-1 text-danger"
+        *ngIf="formulario.get('link_video')?.errors?.['required'] && formulario.get('link_video')?.touched"
+      >
+        Link do Vídeo é obrigatório
+      </div>
+      <div
+        class="col-4 mt-1 text-danger"
+        *ngIf="(formulario.get('link_video')?.errors?.['minlength']
+        && formulario.get('link_video')?.touched)"
+      >
+        Nome de Arista deve ter mais de 2 caracteres
+      </div>
+    </div>
+    <!-- FIM VALIDACOES LINK VIDEO -->
+
     <div class="row">
       <button
         type="button"
-        class="btn btn-outline col-1 offset-9"
+        class="btn btn-outline col-2 offset-7"
         (click)="voltarHome()"
       >
-        Voltar
+        <span>Voltar</span>
       </button>
-      <button type="button" class="btn btn-outline col-1 ms-5">
-        Cadastrar
+      <button
+        [disabled]="formulario.invalid"
+        type="button"
+        class="btn btn-outline col-2 ms-2"
+        (click)="cadastrarFrase()"
+      >
+        <span>Salvar</span>
       </button>
     </div>
   </div>
