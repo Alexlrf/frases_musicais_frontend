@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class AdminComponent implements OnInit{
 
   operacao: string = ''
+  mensagem: string = ''
 
   constructor(
     private route: ActivatedRoute
@@ -16,6 +17,10 @@ export class AdminComponent implements OnInit{
 
   ngOnInit(): void {
     this.operacao = this.route.snapshot.paramMap.get('operacao') || 'cadastro'
+  }
+
+  mostraMensagem(msg: string) {
+    this.mensagem = msg
   }
 
 }

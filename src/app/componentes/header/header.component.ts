@@ -63,7 +63,7 @@ export class HeaderComponent implements OnInit{
   }
 
   buscarArtistaSelecionado() {
-    this.fraseService.buscarArtistaSelecionado(this.artista.idArtista).subscribe({
+    this.fraseService.buscarArtistaSelecionado(this.artista.idArtista!).subscribe({
       next:(frases)=> {
         console.log(frases.body)
         this.frasesArtistaSelecionado = frases.body

@@ -1,4 +1,4 @@
 export interface Artista {
-  idArtista: number,
+  idArtista?: number,
   nome: string
 }

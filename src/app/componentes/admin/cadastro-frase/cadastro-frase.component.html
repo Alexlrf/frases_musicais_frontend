@@ -31,16 +31,17 @@
       <div class="col-8">
         <div
           class="col-8 text-danger"
-          *ngIf="formulario.get('nome_musica')?.errors?.['required'] && formulario.get('nome_musica')?.touched"
+          *ngIf="formulario.get('nome_musica')?.errors?.['required']
+              && formulario.get('nome_musica')?.touched"
         >
           Nome da música é obrigatória
         </div>
         <div
           class="col-8 text-danger"
           *ngIf="(formulario.get('nome_musica')?.errors?.['minlength']
-            && formulario.get('nome_musica')?.touched)
-            || (formulario.get('nome_musica')?.errors?.['maxLength']
-            && formulario.get('nome_musica')?.touched)"
+               && formulario.get('nome_musica')?.touched)
+              || (formulario.get('nome_musica')?.errors?.['maxLength']
+               && formulario.get('nome_musica')?.touched)"
         >
           Nome da música deve de 2 até 100 caracteres
         </div>
@@ -50,16 +51,19 @@
       <div class="col-4">
         <div
           class="text-danger mt-0"
-          *ngIf="formulario.get('nome')?.errors?.['required'] && formulario.get('nome')?.touched"
+          *ngIf="formulario.get('nome')?.errors?.['required']
+              && formulario.get('nome')?.touched"
         >
           Nome de Arista é obrigatório
         </div>
         <div
           class="mt-1 text-danger"
           *ngIf="(formulario.get('nome')?.errors?.['minlength']
-            && formulario.get('nome')?.touched)"
+               && formulario.get('nome')?.touched)
+              || (formulario.get('nome')?.errors?.['maxLength']
+               && formulario.get('nome')?.touched)"
         >
-          Nome de Arista deve ter mais de 2 caracteres
+          Nome de Arista deve de 2 até 100 caracteres
         </div>
       </div>
       <!-- FIM VALIDACOES NOME ARTISTA -->
@@ -76,16 +80,19 @@
     <div class="row mb-3">
       <div
         class="col-4 mt-1 text-danger"
-        *ngIf="formulario.get('texto')?.errors?.['required'] && formulario.get('texto')?.touched"
+        *ngIf="formulario.get('texto')?.errors?.['required']
+            && formulario.get('texto')?.touched"
       >
         Texto da frase é obrigatório
       </div>
       <div
         class="col-4 mt-1 text-danger"
         *ngIf="(formulario.get('texto')?.errors?.['minlength']
-        && formulario.get('texto')?.touched)"
+             && formulario.get('texto')?.touched)
+            || (formulario.get('texto')?.errors?.['maxLength']
+             && formulario.get('texto')?.touched)"
       >
-        Texto da frase deve ter mais de 2 caracteres
+        Texto da frase deve de 10 a 250 caracteres
       </div>
     </div>
     <!-- FIM VALIDACOES TEXTO -->
@@ -101,16 +108,19 @@
     <div class="row mb-3">
       <div
         class="col-4 mt-1 text-danger"
-        *ngIf="formulario.get('link_video')?.errors?.['required'] && formulario.get('link_video')?.touched"
+        *ngIf="formulario.get('link_video')?.errors?.['required']
+            && formulario.get('link_video')?.touched"
       >
         Link do Vídeo é obrigatório
       </div>
       <div
         class="col-4 mt-1 text-danger"
         *ngIf="(formulario.get('link_video')?.errors?.['minlength']
-        && formulario.get('link_video')?.touched)"
+             && formulario.get('link_video')?.touched)
+            || (formulario.get('link_video')?.errors?.['maxLength']
+             && formulario.get('link_video')?.touched)"
       >
-        Nome de Arista deve ter mais de 2 caracteres
+        Link do Vídeo deve ter de 10 a 60 caracteres
       </div>
     </div>
     <!-- FIM VALIDACOES LINK VIDEO -->

@@ -1,5 +1,22 @@
 <div class="container">
-  <app-cadastro-frase *ngIf="operacao === 'cadastro'"></app-cadastro-frase>
+  <div
+    id="alerta_mensagem"
+    *ngIf="mensagem"
+    class="alert alert-danger alert-dismissible fade show col-7 offset-4"
+    role="alert"
+  >
+    {{ mensagem }}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  <app-cadastro-frase
+    *ngIf="operacao === 'cadastro'"
+    (mensagem)="mostraMensagem($event)"
+  ></app-cadastro-frase>
   <app-exclui-altera-frase
     *ngIf="operacao === 'alteraExclui'"
   ></app-exclui-altera-frase>
