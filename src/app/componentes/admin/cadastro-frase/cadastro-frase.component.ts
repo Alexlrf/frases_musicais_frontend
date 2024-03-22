@@ -12,7 +12,12 @@ export class CadastroFraseComponent implements OnInit{
 
   formulario!: FormGroup
 
-  @Output() mensagem = new EventEmitter()
+  mensagem = {
+    msg: '',
+    tipo: ''
+  }
+
+  @Output() mensagemEmit = new EventEmitter()
 
   constructor(
     private router: Router,
@@ -51,20 +56,13 @@ export class CadastroFraseComponent implements OnInit{
   }
 
   cadastrarFrase() {
-    const frase = {
-      texto : this.formulario.get('texto')?.value,
-      nome_musica: this.formulario.get('nome_musica')?.value,
-      link_video: this.formulario.get('link_video')?.value,
-      artista: {
-        nome: this.formulario.get('nome')?.value
-      }
-    }
+    const frase = this.comporFrase()
 
     if(this.formulario.valid) {
       this.fraseSerivce.cadastrarFrase(frase).subscribe({
         next: (frase)=> {
           console.log(frase)
-          this.mensagem.emit('Frase cadastrada com sucesso')
+          this.enviarMensagem('success', 'Frase cadastrada com sucesso')
         },
         error: (erro)=> {
           console.log(erro)
@@ -72,7 +70,23 @@ export class CadastroFraseComponent implements OnInit{
       })
 
     }
+  }
 
+  comporFrase() {
+    return {
+      texto : this.formulario.get('texto')?.value,
+      nome_musica: this.formulario.get('nome_musica')?.value,
+      link_video: this.formulario.get('link_video')?.value,
+      artista: {
+        nome: this.formulario.get('nome')?.value
+      }
+    }
+  }
+
+  enviarMensagem(msg:string, tipo:string) {
+    this.mensagem.msg = msg
+    this.mensagem.tipo = tipo
+    this.mensagemEmit.emit(this.mensagem)
   }
 
 }

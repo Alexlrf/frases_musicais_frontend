@@ -1,20 +1,8 @@
 <div class="container-fluid">
-  <div
-    *ngIf="mensagemErro"
-    class="alert alert-danger alert-dismissible fade show col-7 offset-4"
-    role="alert"
-  >
-    {{ mensagemErro }}
-    <button
-      type="button"
-      class="btn-close"
-      data-bs-dismiss="alert"
-      aria-label="Close"
-    ></button>
-  </div>
+  <app-mensagem [mensagem]="mensagem"></app-mensagem>
   <app-header
     (atualizarFrasesArtista)="atualizarFrases($event)"
-    (emitirMensagemErro)="enviarMensagemErro($event)"
+    (mensagemEmit)="enviarMensagemErro($event)"
   ></app-header>
   <div class="scroll col-12">
     <app-card-frases [frases]="frasesArtistaSelecionado"></app-card-frases>

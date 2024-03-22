@@ -8,8 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AdminComponent implements OnInit{
 
-  operacao: string = ''
-  mensagem: string = ''
+  mensagem = {
+    msg: '',
+    tipo: ''
+  }
+
+  operacao:string = ''
 
   constructor(
     private route: ActivatedRoute
@@ -19,8 +23,9 @@ export class AdminComponent implements OnInit{
     this.operacao = this.route.snapshot.paramMap.get('operacao') || 'cadastro'
   }
 
-  mostraMensagem(msg: string) {
-    this.mensagem = msg
+  mostraMensagem(msg: any) {
+    this.mensagem.msg = msg.msg
+    this.mensagem.tipo = msg.tipo
   }
 
 }
