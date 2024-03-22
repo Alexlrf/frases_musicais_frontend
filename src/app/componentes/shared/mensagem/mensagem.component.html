@@ -1,0 +1,16 @@
+<ng-container *ngIf="mensagem.msg">
+  <div
+    id="alerta_mensagem"
+    role="alert"
+    (click)="esconderAlert()"
+    class="alert alert-{{ mensagem.tipo }} alert-dismissible col-7 offset-5"
+  >
+    {{ mensagem.msg }}
+    <button
+      type="button"
+      class="btn-close"
+      (click)="esconderAlert()"
+      aria-label="Close"
+    ></button>
+  </div>
+</ng-container>

@@ -21,8 +21,11 @@ export class HeaderComponent implements OnInit{
   artista: Artista = {idArtista: 0, nome: 'TODOS ARTISTAS'}
   fragmentoFrase: string = ''
 
-  // mensagemErro: string = ''
-  @Output() emitirMensagemErro = new EventEmitter();
+  mensagem = {
+    msg: '',
+    tipo: ''
+  }
+  @Output() mensagemEmit = new EventEmitter();
   frasesArtistaSelecionado: Frase[] = []
   @Output() atualizarFrasesArtista = new EventEmitter();
 
@@ -77,14 +80,14 @@ export class HeaderComponent implements OnInit{
 
   buscarFrasePorFragmento() {
     if(!this.fragmentoFrase || this.fragmentoFrase.length < 2) {
-      this.emitirMensagemErro.emit('Ops, digite um texto com pelo menos 2 caracteres para realizar a busca!')
+      this.enviarMensagem('Ops, digite um texto com pelo menos 2 caracteres para realizar a busca!', 'danger')
       return
     }
     this.fraseService.buscarFrasePorFragmento(this.fragmentoFrase).subscribe({
       next:(frases)=> {
         this.frasesArtistaSelecionado = frases.body
         if(this.frasesArtistaSelecionado.length == 0) {
-          this.emitirMensagemErro.emit(`Ops, não foram encontradas frases com esse termo: ${this.fragmentoFrase}`)
+          this.enviarMensagem(`Ops, não foram encontradas frases com esse termo: ${this.fragmentoFrase}`, 'danger')
         }
         this.atualizarFrasesArtista.emit(this.frasesArtistaSelecionado)
       },
@@ -93,6 +96,12 @@ export class HeaderComponent implements OnInit{
       }
     })
 
+  }
+
+  enviarMensagem(msg:string, tipo:string) {
+    this.mensagem.msg = msg
+    this.mensagem.tipo = tipo
+    this.mensagemEmit.emit(this.mensagem)
   }
 
 
