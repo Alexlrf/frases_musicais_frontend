@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CadastroFraseComponent } from './componentes/admin/cadastro-frase/cadastro-frase.component';
 import { ExcluiAlteraFraseComponent } from './componentes/admin/exclui-altera-frase/exclui-altera-frase.component';
 import { AdminComponent } from './views/admin/admin.component';
+import { MensagemComponent } from './componentes/shared/mensagem/mensagem.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AdminComponent } from './views/admin/admin.component';
     CardFrasesComponent,
     CadastroFraseComponent,
     ExcluiAlteraFraseComponent,
-    AdminComponent
+    AdminComponent,
+    MensagemComponent
   ],
   imports: [
     BrowserModule,

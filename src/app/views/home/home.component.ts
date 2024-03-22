@@ -8,7 +8,10 @@ import { Frase } from 'src/app/models/Frase';
 })
 export class HomeComponent implements OnInit{
 
-  mensagemErro: string = ''
+  mensagem = {
+    msg: '',
+    tipo: ''
+  }
 
   constructor() {}
 
@@ -21,9 +24,11 @@ export class HomeComponent implements OnInit{
     this.frasesArtistaSelecionado = frases
   }
 
-  enviarMensagemErro(mensagemErro: string) {
-    this.mensagemErro = mensagemErro
+  enviarMensagemErro(msg: any) {
+    this.mensagem.msg = msg.msg
+    this.mensagem.tipo = msg.tipo
   }
+
 
 }
 

@@ -3,3 +3,7 @@ div.scroll {
   height: 70vh;
   overflow-x: hidden;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}

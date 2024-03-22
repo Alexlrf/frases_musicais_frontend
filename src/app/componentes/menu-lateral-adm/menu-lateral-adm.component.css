@@ -1,0 +1,15 @@
+.offcanvas {
+  background-color: rgb(253, 228, 244);
+}
+
+li {
+  font-size: 1.4rem;
+  color: rgb(83, 80, 80);
+  padding: 3px;
+}
+
+li:hover {
+  cursor: pointer;
+  background-color: rgb(230, 187, 211);
+  color: white;
+}
