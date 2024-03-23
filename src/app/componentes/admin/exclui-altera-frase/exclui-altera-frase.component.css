@@ -1,0 +1,21 @@
+.table {
+  background-color: rgb(253, 228, 244);
+}
+
+.table:hover{
+  cursor: pointer;
+}
+
+i {
+  padding: 3px;
+  border-radius: 5px;
+}
+
+i:hover {
+  background-color: rgb(201, 157, 181);
+  color: white;
+}
+
+.div_icone {
+  border-left: 1px solid white;
+}
