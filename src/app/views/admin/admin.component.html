@@ -6,5 +6,6 @@
   ></app-cadastro-frase>
   <app-exclui-altera-frase
     *ngIf="operacao === 'alteraExclui'"
+    (mensagemEmit)="mostraMensagem($event)"
   ></app-exclui-altera-frase>
 </div>
