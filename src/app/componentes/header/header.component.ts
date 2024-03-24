@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit{
     msg: '',
     tipo: ''
   }
+
   @Output() mensagemEmit = new EventEmitter();
   frasesArtistaSelecionado: Frase[] = []
   @Output() atualizarFrasesArtista = new EventEmitter();
@@ -41,6 +42,7 @@ export class HeaderComponent implements OnInit{
       },
       error: (erro)=> {
         console.log(erro)
+        this.enviarMensagem(erro.message, 'danger')
       }
     })
   }
@@ -61,6 +63,7 @@ export class HeaderComponent implements OnInit{
       },
       error: (erro)=> {
         console.log(erro)
+        this.enviarMensagem(erro.message, 'danger')
       }
     })
   }
@@ -68,12 +71,12 @@ export class HeaderComponent implements OnInit{
   buscarArtistaSelecionado() {
     this.fraseService.buscarArtistaSelecionado(this.artista.idArtista!).subscribe({
       next:(frases)=> {
-        console.log(frases.body)
         this.frasesArtistaSelecionado = frases.body
         this.atualizarFrasesArtista.emit(this.frasesArtistaSelecionado)
       },
       error:(erro)=> {
         console.log(erro)
+        this.enviarMensagem(erro.message, 'danger')
       }
     })
   }
@@ -93,6 +96,7 @@ export class HeaderComponent implements OnInit{
       },
       error:(erro)=> {
         console.log(erro)
+        this.enviarMensagem(erro.message, 'danger')
       }
     })
 

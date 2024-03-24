@@ -25,7 +25,6 @@ export class ExcluiAlteraFraseComponent implements OnInit{
       nome: ''
     }
   }
-  frasesAtualizadas: any
 
   @Input() frases: Frase[] = []
 
@@ -44,16 +43,30 @@ export class ExcluiAlteraFraseComponent implements OnInit{
     this.fraseSelecionada = frase
   }
 
+  enviarMensagemEmit(msg: any) {
+    this.mensagem.msg = msg.msg
+    this.mensagem.tipo = msg.tipo
+    this.mensagemEmit.emit(this.mensagem)
+  }
+
   excluirFrase() {
     this.fraseService.excluirFrase(this.fraseSelecionada.idFrase!).subscribe({
       next: (response)=> {
         this.frases.splice(this.frases.findIndex((fr)=>fr.idFrase === this.fraseSelecionada.idFrase), 1)
-        this.mensagemEmit.emit(response.mensagem)
+        window.scrollTo(0,0)
+        this.enviarMensagem(response.mensagem, 'success')
       },
       error: (erro)=> {
         console.log(erro)
+        this.enviarMensagem(erro.message, 'danger')
       }
     })
+  }
+
+  enviarMensagem(msg:string, tipo:string) {
+    this.mensagem.msg = msg
+    this.mensagem.tipo = tipo
+    this.mensagemEmit.emit(this.mensagem)
   }
 
 }
