@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit{
     this.frasesArtistaSelecionado = frases
   }
 
-  enviarMensagemErro(msg: any) {
+  enviarMensagemEmit(msg: any) {
     this.mensagem.msg = msg.msg
     this.mensagem.tipo = msg.tipo
   }

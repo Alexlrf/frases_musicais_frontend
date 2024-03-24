@@ -1,4 +1,7 @@
-<app-header (atualizarFrasesArtista)="atualizarFrases($event)"></app-header>
+<app-header
+  (atualizarFrasesArtista)="atualizarFrases($event)"
+  (mensagemEmit)="enviarMensagemEmit($event)"
+></app-header>
 <table class="table table-hover mt-4">
   <thead>
     <tr>
