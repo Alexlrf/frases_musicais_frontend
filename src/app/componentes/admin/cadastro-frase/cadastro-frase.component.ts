@@ -66,6 +66,7 @@ export class CadastroFraseComponent implements OnInit{
         },
         error: (erro)=> {
           console.log(erro)
+          this.enviarMensagem(erro.message, 'danger')
         }
       })
 

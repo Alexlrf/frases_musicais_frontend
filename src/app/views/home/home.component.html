@@ -2,7 +2,7 @@
   <app-mensagem [mensagem]="mensagem"></app-mensagem>
   <app-header
     (atualizarFrasesArtista)="atualizarFrases($event)"
-    (mensagemEmit)="enviarMensagemErro($event)"
+    (mensagemEmit)="enviarMensagemEmit($event)"
   ></app-header>
   <div class="scroll col-12">
     <app-card-frases [frases]="frasesArtistaSelecionado"></app-card-frases>
