@@ -62,7 +62,7 @@ export class CadastroFraseComponent implements OnInit{
       this.fraseSerivce.cadastrarFrase(frase).subscribe({
         next: (frase)=> {
           console.log(frase)
-          this.enviarMensagem('success', 'Frase cadastrada com sucesso')
+          this.enviarMensagem(frase.mensagem, 'success')
         },
         error: (erro)=> {
           console.log(erro)

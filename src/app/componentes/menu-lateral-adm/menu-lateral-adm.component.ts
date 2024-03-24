@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-lateral-adm',
@@ -8,11 +8,15 @@ import { Router } from '@angular/router';
 })
 export class MenuLateralAdmComponent implements OnInit{
 
+  rotaAdmin: boolean = false
+
   constructor(
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
     ){}
 
   ngOnInit(): void {
+    this.rotaAdmin = this.activatedRoute.snapshot.url[0].path.includes('admin')
   }
 
   cadastrarFrase() {

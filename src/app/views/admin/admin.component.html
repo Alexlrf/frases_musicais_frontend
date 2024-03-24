@@ -4,6 +4,7 @@
     *ngIf="operacao === 'cadastro'"
     (mensagemEmit)="mostraMensagem($event)"
   ></app-cadastro-frase>
+
   <app-exclui-altera-frase
     *ngIf="operacao === 'alteraExclui'"
     (mensagemEmit)="mostraMensagem($event)"
