@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-menu-lateral-adm',
-  templateUrl: './menu-lateral-adm.component.html',
-  styleUrls: ['./menu-lateral-adm.component.css']
+  selector: 'app-menu-lateral',
+  templateUrl: './menu-lateral.component.html',
+  styleUrls: ['./menu-lateral.component.css']
 })
-export class MenuLateralAdmComponent implements OnInit{
+export class MenuLateralComponent implements OnInit{
 
   rotaAdmin: boolean = false
 

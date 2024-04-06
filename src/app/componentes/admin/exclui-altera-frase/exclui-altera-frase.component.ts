@@ -39,23 +39,27 @@ export class ExcluiAlteraFraseComponent implements OnInit{
     ){}
 
   ngOnInit(): void {
+    this.validadorForm(this.fraseSelecionada)
+  }
+
+  validadorForm(frase: Frase) {
     this.formulario = this.formBuilder.group({
-      texto: ['', Validators.compose([
+      texto: [frase.texto, Validators.compose([
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(250),
       ])],
-      nome_musica: ['', Validators.compose([
+      nome_musica: [frase.nome_musica, Validators.compose([
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(100),
       ])],
-      link_video: ['', Validators.compose([
+      link_video: [frase.link_video, Validators.compose([
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(60),
       ])],
-      nome: ['', Validators.compose([
+      nome: [frase.nome_musica, Validators.compose([
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(100),
@@ -91,18 +95,15 @@ export class ExcluiAlteraFraseComponent implements OnInit{
     })
   }
 
-  selecionaAlterarFrase() {
-    alert('Foi')
-    this.formulario.setValue({
-      texto: this.fraseSelecionada.texto,
-      nome_musica: this.fraseSelecionada.nome_musica,
-      link_video: this.fraseSelecionada.link_video,
-      nome: this.fraseSelecionada.artista.nome
-    })
-    console.log(this.formulario)
-    console.log(this.fraseSelecionada.texto)
-    console.log(this.fraseSelecionada.nome_musica)
-    console.log(this.fraseSelecionada.artista.nome)
+  selecionaAlterarFrase(frase: Frase)  {
+    this.validadorForm(frase)
+
+    if(this.formulario.invalid) {
+      return
+    }
+
+    this.fraseSelecionada = frase
+    console.log(this.fraseSelecionada)
   }
 
   alterarFrase() {

@@ -28,4 +28,12 @@ export class AdminComponent implements OnInit{
     this.mensagem.tipo = msg.tipo
   }
 
+  operacaoCadastrar() {
+    this.operacao = 'cadastro'
+  }
+
+  operacaoExcluirAlterar() {
+    this.operacao = 'alteraExclui'
+  }
+
 }

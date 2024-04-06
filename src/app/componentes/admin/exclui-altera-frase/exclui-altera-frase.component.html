@@ -1,136 +1,87 @@
-<!-- <app-header
-  (atualizarFrasesArtista)="atualizarFrases($event)"
-  (mensagemEmit)="enviarMensagemEmit($event)"
-></app-header>
-<table class="table table-hover mt-4">
-  <thead>
-    <tr>
-      <th scope="col" class="col-3">Nome Artista</th>
-      <th scope="col" class="col-3">Nome Música</th>
-      <th scope="col" class="col-6">Frase</th>
-      <th scope="col" class="col-6">Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let frase of frases" (click)="selecionarFrase(frase)">
-      <td>{{ frase.artista.nome }}</td>
-      <td>{{ frase.nome_musica }}</td>
-      <td>{{ frase.texto }}</td>
-      <td class="d-flex align-items-center div_icone">
-        <tr class="row text-center">
-          <div data-bs-toggle="modal" data-bs-target="#modal_exclusao">
-            <i class="bi bi-trash"></i>
-          </div>
-          <div><i class="bi bi-pencil-square"></i></div>
+<div class="container">
+  <div class="row mb-4">
+    <h2 class="mt-1">Alteração e Exclusão de Frases</h2>
+    <hr />
+  </div>
+  <app-busca
+    (atualizarFrasesArtista)="atualizarFrases($event)"
+    (mensagemEmit)="enviarMensagemEmit($event)"
+  ></app-busca>
+  <div class="table-overflow scroll">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col" class="col-3">Nome Artista</th>
+          <th scope="col" class="col-3">Nome Música</th>
+          <th scope="col" class="col-6">Frase</th>
+          <th scope="col" class="col-6">Ações</th>
         </tr>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="modal" tabindex="-1" id="modal_exclusao">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Confirma exclusão da frase?</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <p class="fw-bolder">{{ fraseSelecionada.texto }}</p>
-        <p>
-          <i>{{ fraseSelecionada.artista.nome }}</i>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cancelar
-        </button>
-        <button
-          (click)="excluirFrase()"
-          type="button"
-          class="btn btn-primary"
-          data-bs-dismiss="modal"
-        >
-          Confirmar
-        </button>
-      </div>
+      </thead>
+      <tbody>
+        <tr *ngFor="let frase of frases" (click)="selecionarFrase(frase)">
+          <td>{{ frase.artista.nome }}</td>
+          <td>{{ frase.nome_musica }}</td>
+          <td>{{ frase.texto }}</td>
+          <td class="d-flex align-items-center div_icone">
+            <tr class="row text-center">
+              <div data-bs-toggle="modal" data-bs-target="#modal_exclusao">
+                <i class="bi bi-trash"></i>
+              </div>
+              <div
+                data-bs-toggle="modal"
+                data-bs-target="#modal_alteracao"
+                (click)="selecionaAlterarFrase(frase)"
+              >
+                <i class="bi bi-pencil-square"></i>
+              </div>
+            </tr>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div
+      *ngIf="frases.length == 0"
+      class="col-12 d-flex justify-content-center"
+    >
+      Não foram encontrados registros na busca
     </div>
   </div>
-</div> -->
 
-<app-header
-  (atualizarFrasesArtista)="atualizarFrases($event)"
-  (mensagemEmit)="enviarMensagemEmit($event)"
-></app-header>
-<div class="table-overflow mt-4">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col" class="col-3">Nome Artista</th>
-        <th scope="col" class="col-3">Nome Música</th>
-        <th scope="col" class="col-6">Frase</th>
-        <th scope="col" class="col-6">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let frase of frases" (click)="selecionarFrase(frase)">
-        <td>{{ frase.artista.nome }}</td>
-        <td>{{ frase.nome_musica }}</td>
-        <td>{{ frase.texto }}</td>
-        <td class="d-flex align-items-center div_icone">
-          <tr class="row text-center">
-            <div data-bs-toggle="modal" data-bs-target="#modal_exclusao">
-              <i class="bi bi-trash"></i>
-            </div>
-            <div
-              data-bs-toggle="modal"
-              data-bs-target="#modal_alteracao"
-              (click)="selecionaAlterarFrase()"
-            >
-              <i class="bi bi-pencil-square"></i>
-            </div>
-          </tr>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="modal" tabindex="-1" id="modal_exclusao">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Confirma exclusão da frase?</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <p class="fw-bolder">{{ fraseSelecionada.texto }}</p>
-        <p>
-          <i>{{ fraseSelecionada.artista.nome }}</i>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cancelar
-        </button>
-        <button
-          (click)="excluirFrase()"
-          type="button"
-          class="btn btn-primary"
-          data-bs-dismiss="modal"
-        >
-          Confirmar
-        </button>
+  <div class="modal" tabindex="-1" id="modal_exclusao">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirma exclusão da frase?</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p class="fw-bolder">{{ fraseSelecionada.texto }}</p>
+          <p>
+            <i>{{ fraseSelecionada.artista.nome }}</i>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            (click)="excluirFrase()"
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+          >
+            Confirmar
+          </button>
+        </div>
       </div>
     </div>
   </div>

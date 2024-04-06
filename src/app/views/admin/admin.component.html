@@ -1,12 +1,58 @@
+<app-mensagem [mensagem]="mensagem" *ngIf="mensagem"></app-mensagem>
 <div class="container">
-  <app-mensagem [mensagem]="mensagem"></app-mensagem>
-  <app-cadastro-frase
-    *ngIf="operacao === 'cadastro'"
-    (mensagemEmit)="mostraMensagem($event)"
-  ></app-cadastro-frase>
+  <div class="row">
+    <div class="d-flex flex-column col-3">
+      <div>
+        <app-imagem-logo></app-imagem-logo>
+      </div>
+      <div class="mt-5">
+        <ul class="d-flex flex-column list-unstyled">
+          <li class="mb-2">
+            <span (click)="operacaoCadastrar()">
+              <i class="bi bi-file-earmark-plus">
+                <span
+                  class="offset-1"
+                  [ngStyle]="
+                    operacao === 'cadastro'
+                      ? { 'text-shadow': 'black 1px 0 12px' }
+                      : null
+                  "
+                  >Cadastrar Frase</span
+                >
+              </i>
+            </span>
+          </li>
+          <li class="mb-2">
+            <span (click)="operacaoExcluirAlterar()">
+              <i class="bi bi-pencil-square">
+                <span
+                  class="offset-1"
+                  [ngStyle]="
+                    operacao === 'alteraExclui'
+                      ? { 'text-shadow': 'black 1px 0 12px' }
+                      : null
+                  "
+                  >Alterar/Excluir Frase</span
+                >
+              </i>
+            </span>
+          </li>
+          <li class="mb-2">
+            <i class="bi bi-info-circle"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-9">
+      <app-cadastro-frase
+        *ngIf="operacao === 'cadastro'"
+        (mensagemEmit)="mostraMensagem($event)"
+      ></app-cadastro-frase>
 
-  <app-exclui-altera-frase
-    *ngIf="operacao === 'alteraExclui'"
-    (mensagemEmit)="mostraMensagem($event)"
-  ></app-exclui-altera-frase>
+      <app-exclui-altera-frase
+        *ngIf="operacao === 'alteraExclui'"
+        (mensagemEmit)="mostraMensagem($event)"
+      ></app-exclui-altera-frase>
+    </div>
+  </div>
 </div>
