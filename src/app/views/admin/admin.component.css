@@ -1,1 +1,11 @@
+li {
+  font-size: 1.4rem;
+  color: rgb(83, 80, 80);
+  padding: 3px;
+}
 
+li:hover {
+  cursor: pointer;
+  text-shadow: rgb(216, 162, 241) 1px 0 10px;
+  color: rgb(188, 129, 206);
+}
