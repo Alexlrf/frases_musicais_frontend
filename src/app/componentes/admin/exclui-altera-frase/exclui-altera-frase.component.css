@@ -19,3 +19,13 @@ i:hover {
 .div_icone {
   border-left: 1px solid white;
 }
+
+div.scroll {
+  height: 50vh;
+  overflow-x: hidden;
+}
+
+td {
+  word-break: break-word;
+}
+

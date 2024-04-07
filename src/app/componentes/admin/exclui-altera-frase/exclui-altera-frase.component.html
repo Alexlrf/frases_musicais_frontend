@@ -1,32 +1,52 @@
-<app-header
-  (atualizarFrasesArtista)="atualizarFrases($event)"
-  (mensagemEmit)="enviarMensagemEmit($event)"
-></app-header>
-<table class="table table-hover mt-4">
-  <thead>
-    <tr>
-      <th scope="col" class="col-3">Nome Artista</th>
-      <th scope="col" class="col-3">Nome Música</th>
-      <th scope="col" class="col-6">Frase</th>
-      <th scope="col" class="col-6">Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let frase of frases" (click)="selecionarFrase(frase)">
-      <td>{{ frase.artista.nome }}</td>
-      <td>{{ frase.nome_musica }}</td>
-      <td>{{ frase.texto }}</td>
-      <td class="d-flex align-items-center div_icone">
-        <tr class="row text-center">
-          <div data-bs-toggle="modal" data-bs-target="#modal_exclusao">
-            <i class="bi bi-trash"></i>
-          </div>
-          <div><i class="bi bi-pencil-square"></i></div>
-        </tr>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div>
+  <div class="row mb-4">
+    <h2 class="mt-1">Alteração e Exclusão de Frases</h2>
+    <hr />
+  </div>
+  <app-busca
+    (atualizarFrasesArtista)="atualizarFrases($event)"
+    (mensagemEmit)="enviarMensagemEmit($event)"
+  ></app-busca>
+  <div>
+    <div class="table-overflow scroll">
+      <table class="table table-hover">
+        <thead>
+          <th scope="col" class="col-2">Nome Artista</th>
+          <th scope="col" class="col-4">Nome Música</th>
+          <th scope="col" class="col-5">Frase</th>
+          <th scope="col" class="col-1">Ações</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let frase of frases" (click)="selecionarFrase(frase)">
+            <td class="col-2">{{ frase.artista.nome }}</td>
+            <td class="col-4">{{ frase.nome_musica }}</td>
+            <td class="col-5">{{ frase.texto }}</td>
+            <td class="d-flex col-1 align-items-center div_icone">
+              <tr class="row text-center">
+                <div data-bs-toggle="modal" data-bs-target="#modal_exclusao">
+                  <i class="bi bi-trash"></i>
+                </div>
+                <div
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal_alteracao"
+                  (click)="selecionaAlterarFrase(frase)"
+                >
+                  <i class="bi bi-pencil-square"></i>
+                </div>
+              </tr>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        *ngIf="frases.length == 0"
+        class="col-12 d-flex justify-content-center"
+      >
+        Não foram encontrados registros na busca
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal" tabindex="-1" id="modal_exclusao">
   <div class="modal-dialog">
@@ -57,6 +77,164 @@
           data-bs-dismiss="modal"
         >
           Confirmar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="modal_alteracao">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formulario">
+          <div class="container">
+            <div class="row mb-5">
+              <h2 class="mt-5">Alteração de Frases</h2>
+              <hr />
+            </div>
+            <div class="row">
+              <!-- NOME MUSICA -->
+              <div class="col-8">
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  placeholder="Nome da música"
+                  formControlName="nome_musica"
+                />
+              </div>
+
+              <!-- ARTISTA -->
+              <div class="col-4">
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  placeholder="Artista"
+                  formControlName="nome"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <!-- VALIDACOES NOME MUSICA -->
+              <div class="col-8">
+                <div
+                  class="col-8 text-danger"
+                  *ngIf="formulario.get('nome_musica')?.errors?.['required']
+                      && formulario.get('nome_musica')?.touched"
+                >
+                  Nome da música é obrigatória
+                </div>
+                <div
+                  class="col-8 text-danger"
+                  *ngIf="(formulario.get('nome_musica')?.errors?.['minlength']
+                       && formulario.get('nome_musica')?.touched)
+                      || (formulario.get('nome_musica')?.errors?.['maxLength']
+                       && formulario.get('nome_musica')?.touched)"
+                >
+                  Nome da música deve de 2 até 100 caracteres
+                </div>
+              </div>
+              <!-- FIM VALIDACOES NOME MUSICA -->
+              <!-- VALIDACOES NOME ARTISTA -->
+              <div class="col-4">
+                <div
+                  class="text-danger mt-0"
+                  *ngIf="formulario.get('nome')?.errors?.['required']
+                      && formulario.get('nome')?.touched"
+                >
+                  Nome de Arista é obrigatório
+                </div>
+                <div
+                  class="mt-1 text-danger"
+                  *ngIf="(formulario.get('nome')?.errors?.['minlength']
+                       && formulario.get('nome')?.touched)
+                      || (formulario.get('nome')?.errors?.['maxLength']
+                       && formulario.get('nome')?.touched)"
+                >
+                  Nome de Arista deve de 2 até 100 caracteres
+                </div>
+              </div>
+              <!-- FIM VALIDACOES NOME ARTISTA -->
+            </div>
+
+            <!-- TEXTO -->
+            <textarea
+              type="text"
+              class="form-control form-control-lg col-12"
+              placeholder="Frase"
+              formControlName="texto"
+            ></textarea>
+            <!-- VALIDACOES TEXTO -->
+            <div class="row mb-3">
+              <div
+                class="col-4 mt-1 text-danger"
+                *ngIf="formulario.get('texto')?.errors?.['required']
+                    && formulario.get('texto')?.touched"
+              >
+                Texto da frase é obrigatório
+              </div>
+              <div
+                class="col-4 mt-1 text-danger"
+                *ngIf="(formulario.get('texto')?.errors?.['minlength']
+                     && formulario.get('texto')?.touched)
+                    || (formulario.get('texto')?.errors?.['maxLength']
+                     && formulario.get('texto')?.touched)"
+              >
+                Texto da frase deve de 10 a 250 caracteres
+              </div>
+            </div>
+            <!-- FIM VALIDACOES TEXTO -->
+
+            <!-- LINK VIDEO -->
+            <input
+              type="text"
+              class="form-control form-control-lg col-12"
+              placeholder="Link do Vídeo"
+              formControlName="link_video"
+            />
+            <!-- VALIDACOES LINK VIDEO -->
+            <div class="row mb-3">
+              <div
+                class="col-4 mt-1 text-danger"
+                *ngIf="formulario.get('link_video')?.errors?.['required']
+                    && formulario.get('link_video')?.touched"
+              >
+                Link do Vídeo é obrigatório
+              </div>
+              <div
+                class="col-4 mt-1 text-danger"
+                *ngIf="(formulario.get('link_video')?.errors?.['minlength']
+                     && formulario.get('link_video')?.touched)
+                    || (formulario.get('link_video')?.errors?.['maxLength']
+                     && formulario.get('link_video')?.touched)"
+              >
+                Link do Vídeo deve ter de 10 a 60 caracteres
+              </div>
+            </div>
+            <!-- FIM VALIDACOES LINK VIDEO -->
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button
+          (click)="alterarFrase()"
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+        >
+          Alterar
         </button>
       </div>
     </div>
