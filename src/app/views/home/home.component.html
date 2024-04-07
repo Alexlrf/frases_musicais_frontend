@@ -1,5 +1,9 @@
 <div class="container">
-  <app-mensagem [mensagem]="mensagem"></app-mensagem>
+  <app-mensagem
+    id="id_mensagem"
+    class="col-10"
+    [mensagem]="mensagem"
+  ></app-mensagem>
   <app-header
     (atualizarFrasesArtista)="atualizarFrases($event)"
     (mensagemEmit)="enviarMensagemEmit($event)"

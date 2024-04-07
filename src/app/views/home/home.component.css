@@ -7,3 +7,8 @@ div.scroll {
 ::-webkit-scrollbar {
   /* display: none; */
 }
+
+#id_mensagem {
+  position: absolute;
+  z-index: 9;
+}

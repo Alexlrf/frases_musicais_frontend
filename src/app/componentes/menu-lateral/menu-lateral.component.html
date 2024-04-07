@@ -15,7 +15,7 @@
   aria-labelledby="offcanvasRightLabel"
 >
   <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel">Menu Adm</h5>
+    <h5 id="offcanvasRightLabel" class="align-items-center">Entrar</h5>
     <button
       type="button"
       class="btn-close text-reset"
@@ -24,25 +24,12 @@
     ></button>
   </div>
   <div class="offcanvas-body">
-    <ul class="d-flex flex-column list-unstyled">
-      <li class="mb-2">
-        <span (click)="cadastrarFrase()">
-          <i class="bi bi-file-earmark-plus">
-            <span class="offset-1">Cadastrar Frase</span>
-          </i>
-        </span>
-      </li>
-      <!-- <a href="/admin/cadastro">popopo</a> -->
-      <li class="mb-2">
-        <span (click)="alterarExcluirFrase()">
-          <i class="bi bi-pencil-square">
-            <span class="offset-1">Alterar/Excluir Frase</span>
-          </i>
-        </span>
-      </li>
-      <li class="mb-2">
-        <i class="bi bi-info-circle"></i>
-      </li>
-    </ul>
+    <div class="d-flex flex-column">
+      <input type="text" class="form-control mb-2" placeholder="Usuário" />
+      <input type="text" class="form-control mb-2" placeholder="Senha" />
+      <button type="button" class="btn btn-primary" (click)="cadastrarFrase()">
+        Logar
+      </button>
+    </div>
   </div>
 </div>
