@@ -34,4 +34,8 @@ export class FraseService {
     return this.http.delete<any>(`${this.URL_BASE}/${idFrase}`)
   }
 
+  alterarFrase(fraseSelecionada: Frase) {
+    return this.http.put<any>(this.URL_BASE, fraseSelecionada);
+  }
+
 }

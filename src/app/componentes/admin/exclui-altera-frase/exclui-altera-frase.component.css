@@ -25,8 +25,7 @@ div.scroll {
   overflow-x: hidden;
 }
 
-/* .table-overflow {
-  max-height:70vh;
-  overflow-y:auto;
-  overflow-x: hidden;
-} */
+td {
+  word-break: break-word;
+}
+
