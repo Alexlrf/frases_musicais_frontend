@@ -27,6 +27,9 @@ export class ExcluiAlteraFraseComponent implements OnInit{
     }
   }
 
+  idFraseAlteracao: number = 0
+  idArtistaAlteracao: number = 0
+
   @Input() frases: Frase[] = []
   @Input() titulo: string = ''
 
@@ -59,7 +62,7 @@ export class ExcluiAlteraFraseComponent implements OnInit{
         Validators.minLength(10),
         Validators.maxLength(60),
       ])],
-      nome: [frase.nome_musica, Validators.compose([
+      nome: [frase.artista.nome, Validators.compose([
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(100),
@@ -75,22 +78,16 @@ export class ExcluiAlteraFraseComponent implements OnInit{
     this.fraseSelecionada = frase
   }
 
-  enviarMensagemEmit(msg: any) {
-    this.mensagem.msg = msg.msg
-    this.mensagem.tipo = msg.tipo
-    this.mensagemEmit.emit(this.mensagem)
-  }
-
   excluirFrase() {
     this.fraseService.excluirFrase(this.fraseSelecionada.idFrase!).subscribe({
       next: (response)=> {
         this.frases.splice(this.frases.findIndex((fr)=>fr.idFrase === this.fraseSelecionada.idFrase), 1)
         window.scrollTo(0,0)
-        this.enviarMensagem(response.mensagem, 'success')
+        this.enviarMensagemSucesso(response.mensagem)
       },
       error: (erro)=> {
         console.log(erro)
-        this.enviarMensagem(erro.message, 'danger')
+        this.enviarMensagemErro(erro.message)
       }
     })
   }
@@ -101,13 +98,44 @@ export class ExcluiAlteraFraseComponent implements OnInit{
     if(this.formulario.invalid) {
       return
     }
-
-    this.fraseSelecionada = frase
-    console.log(this.fraseSelecionada)
+    this.idArtistaAlteracao = frase.artista.idArtista!
+    this.idFraseAlteracao   = frase.idFrase!
   }
 
   alterarFrase() {
+    this.prepararFraseAlteracao()
+    this.fraseService.alterarFrase(this.fraseSelecionada).subscribe({
+      next: (response)=> {
+        this.enviarMensagemSucesso(response.mensagem)
+      },
+      error: (erro)=> {
+        this.enviarMensagemErro(erro.message)
+      }
+    })
 
+  }
+
+  prepararFraseAlteracao() {
+    this.fraseSelecionada.idFrase           = this.idFraseAlteracao
+    this.fraseSelecionada.nome_musica       = this.formulario.get('nome_musica')?.value
+    this.fraseSelecionada.link_video        = this.formulario.get('link_video')?.value
+    this.fraseSelecionada.texto             = this.formulario.get('texto')?.value
+    this.fraseSelecionada.artista.idArtista = this.idArtistaAlteracao
+    this.fraseSelecionada.artista.nome      = this.formulario.get('nome')?.value
+  }
+
+  enviarMensagemEmit(msg: any) {
+    this.mensagem.msg = msg.msg
+    this.mensagem.tipo = msg.tipo
+    this.mensagemEmit.emit(this.mensagem)
+  }
+
+  enviarMensagemSucesso(msg:string) {
+    this.enviarMensagem(msg, 'success')
+  }
+
+  enviarMensagemErro(msg:string) {
+    this.enviarMensagem(msg, 'danger')
   }
 
   enviarMensagem(msg:string, tipo:string) {
@@ -115,5 +143,5 @@ export class ExcluiAlteraFraseComponent implements OnInit{
     this.mensagem.tipo = tipo
     this.mensagemEmit.emit(this.mensagem)
   }
-
 }
+
