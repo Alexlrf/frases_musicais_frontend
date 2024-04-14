@@ -1,35 +1,98 @@
-<i
-  *ngIf="!rotaAdmin"
-  class="bi bi-person-circle h-25 ms-4"
-  style="font-size: 2rem; color: rgb(255, 255, 255)"
-  type="button"
-  data-bs-toggle="offcanvas"
-  data-bs-target="#offcanvasRight"
-  aria-controls="offcanvasRight"
-></i>
+<form [formGroup]="formulario">
+  <i
+    *ngIf="!rotaAdmin"
+    class="bi bi-person-circle h-25 ms-4"
+    style="font-size: 2rem; color: rgb(255, 255, 255)"
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasRight"
+    aria-controls="offcanvasRight"
+  ></i>
 
-<div
-  class="offcanvas offcanvas-end"
-  tabindex="-1"
-  id="offcanvasRight"
-  aria-labelledby="offcanvasRightLabel"
->
-  <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel" class="align-items-center">Entrar</h5>
-    <button
-      type="button"
-      class="btn-close text-reset"
-      data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    ></button>
-  </div>
-  <div class="offcanvas-body">
-    <div class="d-flex flex-column">
-      <input type="text" class="form-control mb-2" placeholder="Usuário" />
-      <input type="text" class="form-control mb-2" placeholder="Senha" />
-      <button type="button" class="btn btn-primary" (click)="cadastrarFrase()">
-        Logar
-      </button>
+  <div
+    class="offcanvas offcanvas-end"
+    tabindex="-1"
+    id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel"
+  >
+    <div class="offcanvas-header bg-secondary text-white">
+      <h5 id="offcanvasRightLabel" class="align-items-center">Entrar</h5>
+      <button
+        type="button"
+        class="btn-close text-reset bg-white"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="d-flex flex-column">
+        <input
+          type="text"
+          class="form-control mb-2"
+          placeholder="Usuário"
+          formControlName="login"
+          (click)="limparMsgErro()"
+        />
+        <!-- MENSAGEM VALIDACAO LOGIN -->
+        <div
+          style="font-size: 12px"
+          class="text-danger fs-9"
+          *ngIf="formulario.get('login')?.errors?.['required']
+              && formulario.get('login')?.touched"
+        >
+          Usuário é obrigatório
+        </div>
+
+        <div
+          style="font-size: 12px"
+          class="text-danger fs-9"
+          *ngIf="(formulario.get('login')?.errors?.['minlength']
+               && formulario.get('login')?.touched)
+              || (formulario.get('login')?.errors?.['maxLength']
+               && formulario.get('login')?.touched)"
+        >
+          Usuário deve de 3 a 30 caracteres
+        </div>
+        <!-- FIM MENSAGEM VALIDACAO LOGIN -->
+
+        <input
+          type="text"
+          class="form-control mb-2"
+          placeholder="Senha"
+          formControlName="senha"
+          (click)="limparMsgErro()"
+        />
+
+        <!-- MENSAGEM VALIDACAO SENHA -->
+        <div
+          style="font-size: 12px"
+          class="text-danger fs-9"
+          *ngIf="formulario.get('senha')?.errors?.['required']
+            && formulario.get('senha')?.touched"
+        >
+          Senha é obrigatório
+        </div>
+
+        <div
+          style="font-size: 12px"
+          class="text-danger fs-9"
+          *ngIf="(formulario.get('senha')?.errors?.['minlength']
+             && formulario.get('senha')?.touched)
+            || (formulario.get('senha')?.errors?.['maxLength']
+             && formulario.get('senha')?.touched)"
+        >
+          Senha deve ter de 5 a 30 caracteres
+        </div>
+
+        <!-- FIM MENSAGEM VALIDACAO SENHA -->
+        <button type="button" class="btn btn-primary" (click)="logar()">
+          Logar
+        </button>
+      </div>
+
+      <span *ngIf="mensagemErro" class="text-danger" style="font-size: 14px"
+        >{{ mensagemErro }}
+      </span>
     </div>
   </div>
-</div>
+</form>

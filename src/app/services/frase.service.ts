@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {  HttpClient } from '@angular/common/http'
+import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Frase } from '../models/Frase';
@@ -12,7 +13,16 @@ export class FraseService {
 
   constructor(private http: HttpClient) {}
 
+  TOKEN_JWT = sessionStorage.getItem('token')
   URL_BASE = environment.URL_BASE + '/frases'
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      Authorization: this.TOKEN_JWT!!
+    })
+  };
+
 
   buscarFrases():Observable<any> {
     return this.http.get<any>(`${this.URL_BASE}`)
@@ -27,7 +37,7 @@ export class FraseService {
   }
 
   cadastrarFrase(frase: any) {
-    return this.http.post<any>(`${this.URL_BASE}`, frase)
+    return this.http.post<any>(`${this.URL_BASE}`, frase, this.httpOptions)
   }
 
   excluirFrase(idFrase: number) {
