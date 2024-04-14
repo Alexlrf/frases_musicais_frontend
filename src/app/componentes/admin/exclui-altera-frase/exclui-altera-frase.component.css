@@ -1,9 +1,18 @@
 .table {
-  background-color: rgb(253, 228, 244);
+  background-color: rgb(235, 228, 232);
 }
 
-.table:hover{
+th {
+  background-color: rgb(168, 157, 157);
+  color: white;
+  padding: 5px;
+}
+
+tr:hover{
   cursor: pointer;
+  background-color: rgb(240, 202, 202);
+  font-weight: 500;
+  border-bottom: 2px solid rgb(46, 43, 43);
 }
 
 i {
@@ -18,6 +27,7 @@ i:hover {
 
 .div_icone {
   border-left: 1px solid white;
+  /* height: max-content; */
 }
 
 div.scroll {

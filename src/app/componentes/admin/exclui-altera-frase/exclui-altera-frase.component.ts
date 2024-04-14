@@ -86,7 +86,10 @@ export class ExcluiAlteraFraseComponent implements OnInit{
         this.enviarMensagemSucesso(response.mensagem)
       },
       error: (erro)=> {
-        console.log(erro)
+        if(erro.status == 403) {
+          this.enviarMensagem("Sem pemissão para excluir frases", 'danger')
+          return
+        }
         this.enviarMensagemErro(erro.message)
       }
     })
@@ -109,6 +112,10 @@ export class ExcluiAlteraFraseComponent implements OnInit{
         this.enviarMensagemSucesso(response.mensagem)
       },
       error: (erro)=> {
+        if(erro.status == 403) {
+          this.enviarMensagem("Sem pemissão para alterar frases", 'danger')
+          return
+        }
         this.enviarMensagemErro(erro.message)
       }
     })

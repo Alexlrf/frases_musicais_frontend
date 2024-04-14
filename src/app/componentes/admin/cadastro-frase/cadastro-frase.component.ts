@@ -61,11 +61,14 @@ export class CadastroFraseComponent implements OnInit{
     if(this.formulario.valid) {
       this.fraseSerivce.cadastrarFrase(frase).subscribe({
         next: (frase)=> {
-          console.log(frase)
           this.enviarMensagem(frase.mensagem, 'success')
         },
         error: (erro)=> {
           console.log(erro)
+          if(erro.status == 403) {
+            this.enviarMensagem("Sem pemissão para cadastrar frases", 'danger')
+            return
+          }
           this.enviarMensagem(erro.message, 'danger')
         }
       })

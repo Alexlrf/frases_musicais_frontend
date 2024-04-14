@@ -12,7 +12,7 @@ import { CadastroFraseComponent } from './componentes/admin/cadastro-frase/cadas
 import { ExcluiAlteraFraseComponent } from './componentes/admin/exclui-altera-frase/exclui-altera-frase.component';
 import { AdminComponent } from './views/admin/admin.component';
 import { MensagemComponent } from './componentes/shared/mensagem/mensagem.component';
-import { MenuLateralComponent } from './componentes/menu-lateral/menu-lateral.component';
+import { ModalLoginComponent } from './componentes/modal-login/modal-login.component';
 import { ImagemLogoComponent } from './componentes/shared/imagem-logo/imagem-logo.component';
 import { BuscaComponent } from './componentes/shared/busca/busca.component';
 
@@ -21,7 +21,7 @@ import { BuscaComponent } from './componentes/shared/busca/busca.component';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    MenuLateralComponent,
+    ModalLoginComponent,
     CardFrasesComponent,
     CadastroFraseComponent,
     ExcluiAlteraFraseComponent,
