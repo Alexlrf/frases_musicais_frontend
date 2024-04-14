@@ -7,6 +7,8 @@
     ></app-busca>
   </div>
   <div class="col-1 d-flex h-25 align-self-center">
-    <app-menu-lateral></app-menu-lateral>
+    <app-modal-login
+      (mensagemEmit)="enviarMensagemEmit($event)"
+    ></app-modal-login>
   </div>
 </div>
