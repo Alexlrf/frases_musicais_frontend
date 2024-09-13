@@ -19,7 +19,7 @@ export class FraseService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      Authorization: this.TOKEN_JWT!!
+      'Authorization': this.TOKEN_JWT!!
     })
   };
 

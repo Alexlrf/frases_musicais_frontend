@@ -57,11 +57,11 @@ export class ExcluiAlteraFraseComponent implements OnInit{
         Validators.minLength(2),
         Validators.maxLength(100),
       ])],
-      link_video: [frase.link_video, Validators.compose([
-        Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(60),
-      ])],
+      // link_video: [frase.link_video, Validators.compose([
+      //   Validators.required,
+      //   Validators.minLength(10),
+      //   Validators.maxLength(60),
+      // ])],
       nome: [frase.artista.nome, Validators.compose([
         Validators.required,
         Validators.minLength(2),
@@ -97,15 +97,14 @@ export class ExcluiAlteraFraseComponent implements OnInit{
 
   selecionaAlterarFrase(frase: Frase)  {
     this.validadorForm(frase)
-
-    if(this.formulario.invalid) {
-      return
-    }
     this.idArtistaAlteracao = frase.artista.idArtista!
     this.idFraseAlteracao   = frase.idFrase!
   }
 
   alterarFrase() {
+    if(this.formulario.invalid) {
+      return
+    }
     this.prepararFraseAlteracao()
     this.fraseService.alterarFrase(this.fraseSelecionada).subscribe({
       next: (response)=> {
