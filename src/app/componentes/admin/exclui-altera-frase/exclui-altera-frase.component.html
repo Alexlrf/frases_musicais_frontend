@@ -201,7 +201,7 @@
               formControlName="link_video"
             />
             <!-- VALIDACOES LINK VIDEO -->
-            <div class="row mb-3">
+            <!-- <div class="row mb-3">
               <div
                 class="col-4 mt-1 text-danger"
                 *ngIf="formulario.get('link_video')?.errors?.['required']
@@ -218,7 +218,7 @@
               >
                 Link do Vídeo deve ter de 10 a 60 caracteres
               </div>
-            </div>
+            </div> -->
             <!-- FIM VALIDACOES LINK VIDEO -->
           </div>
         </form>
@@ -228,6 +228,7 @@
           Cancelar
         </button>
         <button
+          [disabled]="formulario.invalid"
           (click)="alterarFrase()"
           type="button"
           class="btn btn-primary"

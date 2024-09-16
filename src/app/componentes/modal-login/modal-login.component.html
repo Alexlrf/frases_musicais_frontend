@@ -16,7 +16,16 @@
     aria-labelledby="offcanvasRightLabel"
   >
     <div class="offcanvas-header bg-secondary text-white">
-      <h5 id="offcanvasRightLabel" class="align-items-center">Entrar</h5>
+      <h5
+        id="offcanvasRightLabel"
+        class="align-items-center"
+        *ngIf="!TOKEN_JWT"
+      >
+        Entrar
+      </h5>
+      <h5 id="offcanvasRightLabel" class="align-items-center" *ngIf="TOKEN_JWT">
+        ADMIN
+      </h5>
       <button
         type="button"
         class="btn-close text-reset bg-white"
@@ -25,7 +34,7 @@
       ></button>
     </div>
     <div class="offcanvas-body">
-      <div class="d-flex flex-column">
+      <div class="d-flex flex-column" *ngIf="!TOKEN_JWT">
         <input
           type="text"
           class="form-control mb-2"
@@ -88,6 +97,13 @@
         <button type="button" class="btn btn-primary" (click)="logar()">
           Logar
         </button>
+      </div>
+      <div
+        class="d-flex align-self-center justify-content-center bg-secondary"
+        *ngIf="TOKEN_JWT"
+      >
+        <!-- <a href="http://localhost:4200/admin/cadastro" >TESTE TESTE</a> -->
+        <button (click)="direcionarAdm()">Ir para ADMIN</button>
       </div>
 
       <span *ngIf="mensagemErro" class="text-danger" style="font-size: 14px"

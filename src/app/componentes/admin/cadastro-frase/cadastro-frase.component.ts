@@ -38,9 +38,9 @@ export class CadastroFraseComponent implements OnInit{
         Validators.maxLength(100),
       ])],
       link_video: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(60),
+      //   Validators.required,
+      //   Validators.minLength(10),
+      //   Validators.maxLength(60),
       ])],
       nome: ['', Validators.compose([
         Validators.required,
