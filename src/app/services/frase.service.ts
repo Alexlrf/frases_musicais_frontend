@@ -19,7 +19,7 @@ export class FraseService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      Authorization: this.TOKEN_JWT!!
+      'Authorization': this.TOKEN_JWT!!
     })
   };
 
@@ -29,11 +29,11 @@ export class FraseService {
   }
 
   buscarArtistaSelecionado(idArtista: number):Observable<any> {
-    return this.http.get<any>(`${this.URL_BASE}/artista/${idArtista}`)
+    return this.http.get<any>(`${this.URL_BASE}/artista/${idArtista}`, this.httpOptions)
   }
 
   buscarFrasePorFragmento(fragmento: string): Observable<any> {
-    return this.http.get<any>(`${this.URL_BASE}/fragmento/${fragmento}`)
+    return this.http.get<any>(`${this.URL_BASE}/fragmento/${fragmento}`, this.httpOptions)
   }
 
   cadastrarFrase(frase: any) {
@@ -41,11 +41,11 @@ export class FraseService {
   }
 
   excluirFrase(idFrase: number) {
-    return this.http.delete<any>(`${this.URL_BASE}/${idFrase}`)
+    return this.http.delete<any>(`${this.URL_BASE}/${idFrase}`, this.httpOptions)
   }
 
   alterarFrase(fraseSelecionada: Frase) {
-    return this.http.put<any>(this.URL_BASE, fraseSelecionada);
+    return this.http.put<any>(this.URL_BASE, fraseSelecionada, this.httpOptions);
   }
 
 }

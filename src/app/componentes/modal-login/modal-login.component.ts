@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-modal-login',
@@ -13,6 +14,9 @@ export class ModalLoginComponent implements OnInit{
   mensagemErro :string = ''
   formulario! : FormGroup
   rotaAdmin: boolean = false
+
+  TOKEN_JWT = sessionStorage.getItem('token')
+  URL_ADM = environment.URL_ADM_1
 
   constructor(
     private router: Router,
@@ -44,7 +48,7 @@ export class ModalLoginComponent implements OnInit{
       this.loginService.logar(this.formatarDadosUsuario()).subscribe({
         next: (response)=> {
           sessionStorage.setItem('token', response.token)
-          this.router.navigate(["/admin/cadastro"])
+          this.router.navigate([this.URL_ADM], { skipLocationChange: true })
         },
         error: (erro)=> {
           if(erro.status == 403) {
@@ -61,6 +65,10 @@ export class ModalLoginComponent implements OnInit{
     let senha = this.formulario.get('senha')?.value
     let usuario = `{"login": "${login}", "senha": "${senha}"}`
     return JSON.parse(usuario)
+  }
+
+  direcionarAdm() {
+    this.router.navigate([this.URL_ADM], { skipLocationChange: true })
   }
 
   limparMsgErro() {
